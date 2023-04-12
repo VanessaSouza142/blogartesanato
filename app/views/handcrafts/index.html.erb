@@ -1,0 +1,21 @@
+<h1 align="center">Listing all Handcrafts</h1>>
+<hr />
+
+<% @handcrafts.each do |handcraft| %>
+    <div class="row">
+        <div class="col-nd-2"> 
+        <section class="center">
+
+        </section>
+        </div>
+        <div class="col-nd-8 well"> 
+            <h4> <%= handcraft.name %> </h4>
+            <p> <%= truncate(handcraft.description, length: 150) %> </p>
+            <p>
+            <span class="quiet"><small>Created <%= time_ago_in_words(handcraft.created_at) %> ago</small></span>
+            </p>
+        </div>
+    </div>
+
+
+<% end %>
