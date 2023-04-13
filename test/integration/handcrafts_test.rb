@@ -29,4 +29,30 @@ class HandcraftsTest < ActionDispatch::IntegrationTest
         assert_match @handcraft.description, response.body
         assert_match @artisan.name, response.body  
     end
+
+    test "create new valid handcraft" do
+        get new_handcraft_path
+        assert_template 'handcrafts/new'
+        name_of_handcraft = "clay sculpture"
+        description_of_handcraft = "a nice jar made with clay"
+        assert_difference 'Handcraft.count', 1 do 
+            post handcrafts_path, params: { handcraft: {name: name_of_handcraft, description: description_of_handcraft}}
+        end
+        follow_redirect!
+        assert_match name_of_handcraft.capitalize, response.body
+        assert_match description_of_handcraft, response.body
+      end
+      
+      test "reject invalid handcraft submissions" do
+        get new_handcraft_path
+        assert_template 'handcrafts/new'
+        assert_no_difference 'Handcraft.count' do
+        post handcrafts_path, params: { handcraft: { name: " ", description: " " } }
+        end
+        assert_template 'handcrafts/new'
+        assert_select 'h2.panel-title'
+        assert_select 'div.panel-body'
+      end
+
+      
 end

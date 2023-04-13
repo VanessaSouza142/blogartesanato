@@ -4,6 +4,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 
+
 import "@hotwired/turbo-rails"
 import "controllers"
 
