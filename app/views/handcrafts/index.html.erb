@@ -1,21 +1,19 @@
-<h1 align="center">Listing all Handcrafts</h1>>
-<hr />
+<%= render 'shared/page_title', title: "Showing all Handcrafts" %>
 
 <% @handcrafts.each do |handcraft| %>
     <div class="row">
-        <div class="col-nd-2"> 
-        <section class="center">
-
+        <div class="col-md-2"> 
+        <section class="artisan_info center">
+            <%= gravatar_for(handcraft.artisan, size: 120) %>
         </section>
         </div>
         <div class="col-nd-8 well"> 
-            <h4> <%= handcraft.name %> </h4>
+            <h4> <%= link_to handcraft.name, handcraft_path(handcraft) %> </h4>
             <p> <%= truncate(handcraft.description, length: 150) %> </p>
             <p>
             <span class="quiet"><small>Created <%= time_ago_in_words(handcraft.created_at) %> ago</small></span>
             </p>
         </div>
     </div>
-
 
 <% end %>
