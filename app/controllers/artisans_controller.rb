@@ -18,6 +18,20 @@ class ArtisansController < ApplicationController
         @artisan = Artisan.find(params[:id])
     end
 
+    def edit
+        @artisan = Artisan.find(params[:id])
+      end
+      
+      def update
+        @artisan = Artisan.find(params[:id])
+        if @artisan.update(artisan_params)
+          flash[:success] = "Your account was updated successfully"
+          redirect_to @artisan
+        else
+          render 'edit', status: :unprocessable_entity
+        end  
+      end
+
     private
   
     def artisan_params
