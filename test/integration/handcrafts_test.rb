@@ -2,7 +2,7 @@ require "test_helper"
 
 class HandcraftsTest < ActionDispatch::IntegrationTest
     def setup
-        @artisan = Artisan.create!(name: "Vanessa", email: "vanessa@example.com")
+        @artisan = Artisan.create!(name: "Vanessa", email: "vanessa@example.com", password: "password", password_confirmation: "password")
         @handcraft = Handcraft.create(name: "Painting", description: "Great handwork paintings with hot colors", artisan: @artisan)
         # another way
         @handcraft2 = @artisan.handcrafts.build(name: "Needlework", description: "Nice needlework with flowers")

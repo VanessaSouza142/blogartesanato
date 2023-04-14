@@ -3,7 +3,7 @@ require 'test_helper'
 class ArtisanTest < ActiveSupport::TestCase
   
   def setup
-    @artisan = Artisan.new(name: "Vanessa", email: "vanessa@example.com")
+    @artisan = Artisan.new(name: "Vanessa", email: "vanessa@example.com", password: "password", password_confirmation: "password")
   end
   
   test "should be valid" do
@@ -58,5 +58,15 @@ class ArtisanTest < ActiveSupport::TestCase
     @artisan.email = mixed_email
     @artisan.save
     assert_equal mixed_email.downcase, @artisan.reload.email 
+  end
+
+  test "password should be present" do
+    @artisan.password = @artisan.password_confirmation = " "
+    assert_not @artisan.valid?
+  end
+  
+  test "password should be at least 5 characters" do
+    @artisan.password = @artisan.password_confirmation = "x" * 4
+    assert_not @artisan.valid?
   end
 end

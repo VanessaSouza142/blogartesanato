@@ -3,7 +3,7 @@ require 'test_helper'
 class HandcraftTest < ActiveSupport::TestCase
   
   def setup
-    @artisan = Artisan.create!(name: "Vanessa", email: "vanessa@example.com")
+    @artisan = Artisan.create!(name: "Vanessa", email: "vanessa@example.com", password: "password", password_confirmation: "password")
     @handcraft = @artisan.handcrafts.build(name: "painting", description: "great craft painting")
   end
 

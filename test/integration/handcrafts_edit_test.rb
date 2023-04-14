@@ -3,7 +3,7 @@ require "test_helper"
 class HandcraftsEditTest < ActionDispatch::IntegrationTest
 
     def setup
-        @artisan = Artisan.create!(name: "Vanessa", email: "vanessa@example.com")
+        @artisan = Artisan.create!(name: "Vanessa", email: "vanessa@example.com", password: "password", password_confirmation: "password")
         @handcraft = Handcraft.create(name: "Painting", description: "Great handwork paintings with hot colors", artisan: @artisan)
       end
       
