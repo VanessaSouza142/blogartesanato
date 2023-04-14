@@ -15,7 +15,7 @@ class ArtisansController < ApplicationController
     end
 
     def show
-
+        @artisan = Artisan.find(params[:id])
     end
 
     private
