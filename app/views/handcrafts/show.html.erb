@@ -18,5 +18,9 @@
                 <%= time_ago_in_words(@handcraft.created_at)%> ago
             </div>
         </p>
-    </div>    
+    </div>
+        <div class="handcraft-actions">
+            <%= link_to "Edit this handcraft", edit_handcraft_path(@handcraft), class: 'btn btn-xs btn-warning' %>
+            <%= link_to "Delete this handcraft", handcraft_path(@handcraft), method: :delete, data: { confirm: "Are you sure you want to delete?" }, class: "btn btn-xs btn-danger" %>
+        </div>     
 </div>
