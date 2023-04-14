@@ -22,5 +22,6 @@
         <div class="handcraft-actions">
             <%= link_to "Edit this handcraft", edit_handcraft_path(@handcraft), class: 'btn btn-xs btn-warning' %>
             <%= link_to "Delete this handcraft", handcraft_path(@handcraft), method: :delete, data: { confirm: "Are you sure you want to delete?" }, class: "btn btn-xs btn-danger" %>
+            <%= link_to "Return to handcrafts listing", handcrafts_path, class: 'btn btn-xs btn-primary' %>
         </div>     
 </div>

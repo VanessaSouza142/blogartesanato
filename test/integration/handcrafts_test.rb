@@ -29,7 +29,8 @@ class HandcraftsTest < ActionDispatch::IntegrationTest
         assert_match @handcraft.description, response.body
         assert_match @artisan.name, response.body 
         assert_select 'a[href=?]', edit_handcraft_path(@handcraft), text: "Edit this handcraft"
-        assert_select 'a[href=?]', handcraft_path(@handcraft), text: "Delete this handcraft" 
+        assert_select 'a[href=?]', handcraft_path(@handcraft), text: "Delete this handcraft"
+        assert_select 'a[href=?]', handcrafts_path, text: "Return to handcrafts listing"  
     end
 
     test "create new valid handcraft" do

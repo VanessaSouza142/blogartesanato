@@ -1,10 +1,12 @@
 class HandcraftsController < ApplicationController
+    before_action :set_handcraft, only: [:show, :edit, :update]
+
     def index
         @handcrafts = Handcraft.all
     end
 
     def show
-        @handcraft = Handcraft.find(params[:id])
+        
     end
 
     def new
@@ -23,18 +25,17 @@ class HandcraftsController < ApplicationController
     end
 
     def edit
-        @handcraft = Handcraft.find(params[:id])
-      end
+        
+    end
       
-      def update
-        @handcraft = Handcraft.find(params[:id])
+    def update
         if @handcraft.update(handcraft_params)
             flash[:success] = "Handcraft was updated successfully!"
             redirect_to handcraft_path(@handcraft)
         else
           render 'edit'
         end
-      end
+    end
 
       def destroy
         Handcraft.find(params[:id]).destroy
@@ -43,6 +44,11 @@ class HandcraftsController < ApplicationController
       end
 
     private
+
+        def set_handcraft
+            @handcraft = Handcraft.find(params[:id])
+        end
+
         def handcraft_params
             params.require(:handcraft).permit(:name, :description)
         end
