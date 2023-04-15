@@ -11,7 +11,7 @@ class ArtisansController < ApplicationController
     def create
         @artisan = Artisan.new(artisan_params)
         if @artisan.save
-          flash[:success] = "Welcome #{@artisan.name} to My Handcrafts Blog!"
+          flash[:success] = "Bem-vindo #{@artisan.name} ao seu blog de artesanato em geral"
           redirect_to artisan_path(@artisan)
         else
           render 'new', status: :unprocessable_entity
@@ -30,11 +30,18 @@ class ArtisansController < ApplicationController
       def update
         @artisan = Artisan.find(params[:id])
         if @artisan.update(artisan_params)
-          flash[:success] = "Your account was updated successfully"
+          flash[:success] = "Sua conta foi atualizada com sucesso"
           redirect_to @artisan
         else
           render 'edit', status: :unprocessable_entity
         end  
+      end
+
+      def destroy
+        @artisan = Artisan.find(params[:id])
+        @artisan.destroy
+        flash[:danger] = "O artesão e todos os artesanatos associados a ele foram deletados"
+        redirect_to artisans_path
       end
 
     private

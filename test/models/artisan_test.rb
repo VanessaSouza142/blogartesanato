@@ -69,4 +69,13 @@ class ArtisanTest < ActiveSupport::TestCase
     @artisan.password = @artisan.password_confirmation = "x" * 4
     assert_not @artisan.valid?
   end
+
+    test "associated handcrafts should be destroyed" do
+        @artisan.save
+        @artisan.handcrafts.create!(name: "testing delete", description: "testing delete function")
+        assert_difference 'Handcraft.count', -1 do
+            @artisan.destroy
+        end
+    end
+
 end
