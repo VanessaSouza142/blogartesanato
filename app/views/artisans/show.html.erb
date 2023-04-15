@@ -6,4 +6,10 @@
 </div>
 
 <h4 align="center"><%= @artisan.name %>'s handcrafts </h4>
-<%= render 'handcrafts/handcraft', obj: @artisan.handcrafts %>
+<div align="center">
+<%= will_paginate @artisan_handcrafts %>
+</div>
+<%= render 'handcrafts/handcraft', obj: @artisan_handcrafts %>
+<div align="center">
+<%= will_paginate @artisan_handcrafts %>
+</div>

@@ -1,5 +1,9 @@
 class ArtisansController < ApplicationController
-  
+    
+    def index
+        @artisans = Artisan.paginate(page: params[:page], per_page: 5)
+      end
+
     def new
       @artisan = Artisan.new
     end
@@ -16,6 +20,7 @@ class ArtisansController < ApplicationController
 
     def show
         @artisan = Artisan.find(params[:id])
+        @artisan_handcrafts = @artisan.handcrafts.paginate(page: params[:page], per_page: 5)
     end
 
     def edit

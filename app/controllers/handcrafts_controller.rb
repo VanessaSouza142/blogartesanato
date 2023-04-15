@@ -2,7 +2,7 @@ class HandcraftsController < ApplicationController
     before_action :set_handcraft, only: [:show, :edit, :update]
 
     def index
-        @handcrafts = Handcraft.all
+        @handcrafts = Handcraft.paginate(page: params[:page], per_page: 5)
     end
 
     def show

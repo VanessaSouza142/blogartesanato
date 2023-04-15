@@ -1,3 +1,11 @@
 <%= render 'shared/page_title', title: "Showing all Handcrafts" %>
 
+<div align="center">
+<%= will_paginate %>
+</div>
 <%= render 'handcraft', obj: @handcrafts %>
+<div align="center">
+<%= will_paginate %>
+</div>
+
+
