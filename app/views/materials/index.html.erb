@@ -1,0 +1,19 @@
+<%= render 'shared/page_title', title: "Listagem de todos os materiais" %>
+
+<div align="center">
+    <%= will_paginate %>
+    <% @materials.each do |material| %>
+    <ul class="listing">
+    <div class="row">
+        <div class="well col-md-4 col-md-offset-4">
+            <li class="artisan-title"><%= link_to material.name.capitalize, material_path(material) %></li>
+            <li><small><%= pluralize(material.handcrafts.count, "artesanato") if material.handcrafts %></small></li>
+            <% if logged_in? && current_artisan.admin? %>
+                <li><%= link_to "Edite este material", edit_material_path(material) %></li>
+            <% end %>
+        </div>
+    </div>
+    </ul>      
+    <% end %>
+    <%= will_paginate %>
+</div>

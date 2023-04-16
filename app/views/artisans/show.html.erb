@@ -4,12 +4,15 @@
     <%= gravatar_for @artisan, size: 150 %>
   </div>
 </div>
-
-<h4 align="center"> artesanatos de <%= @artisan.name %> </h4>
-<div align="center">
-<%= will_paginate @artisan_handcrafts %>
-</div>
-<%= render 'handcrafts/handcraft', obj: @artisan_handcrafts %>
-<div align="center">
-<%= will_paginate @artisan_handcrafts %>
+<% if @artisan.handcrafts.count != 0 %>
+    <h4 align="center"> artesanatos de <%= @artisan.name %> </h4>
+    <div align="center">
+    <%= will_paginate @artisan_handcrafts %>
+    </div>
+    <%= render 'handcrafts/handcraft', obj: @artisan_handcrafts %>
+    <div align="center">
+    <%= will_paginate @artisan_handcrafts %>
+<% else %>
+    <h4 align="center"> O artesão não tem artesanatos cadastrados </h4>
+<% end %>
 </div>

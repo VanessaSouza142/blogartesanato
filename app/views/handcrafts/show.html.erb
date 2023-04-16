@@ -5,12 +5,15 @@
     <hr />
     <%=simple_format(@handcraft.description) %>
     <hr />
+    <% if @handcraft.materials.any? %>
+        <p>Materiais: <%= render @handcraft.materials %></p>
+    <% end %>
     <div class="pull-right">
         <p class="center">
             <em>Criado por:</em>
         </p>
         <p class="center">
-            <%= link_to gravatar_for(@handcraft.artisan), handcraft_path %>
+            <%= link_to gravatar_for(@handcraft.artisan), artisan_path(@handcraft.artisan) %>
         </p>
         <p class="center">
             <small> <%= @handcraft.artisan.name.capitalize %></small>

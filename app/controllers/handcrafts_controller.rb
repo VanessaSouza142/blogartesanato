@@ -52,7 +52,7 @@ class HandcraftsController < ApplicationController
         end
 
         def handcraft_params
-            params.require(:handcraft).permit(:name, :description)
+            params.require(:handcraft).permit(:name, :description, material_ids: [])
         end
 
         def require_same_user

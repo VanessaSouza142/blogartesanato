@@ -1,0 +1,14 @@
+<%= render 'shared/page_title', title: "#{@material.name}" %>
+
+<% if @material.handcrafts.count != 0 %>
+    <h4 align="center"> Artesanatos que utilizam <%= @material.name %> </h4>
+    <div align="center">
+    <%= will_paginate @material_handcrafts %>
+    </div>
+    <%= render 'handcrafts/handcraft', obj: @material_handcrafts %>
+    <div align="center">
+    <%= will_paginate @material_handcrafts %>
+<% else %>
+    <h4 align="center"> O material não tem artesanatos cadastrados </h4>
+<% end %>
+</div>

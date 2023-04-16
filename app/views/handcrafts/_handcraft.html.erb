@@ -8,8 +8,11 @@
         <div class="col-nd-8 well"> 
             <h4> <%= link_to handcraft.name, handcraft_path(handcraft) %> </h4>
             <p> <%= truncate(handcraft.description, length: 150) %> </p>
+            <% if handcraft.materials.any? %>
+                <p> Materiais: <%= render handcraft.materials %> </p>
+            <% end%>
             <p>
-            <span class="quiet"><small>Criado a <%= time_ago_in_words(handcraft.created_at) %> atrás </small></span>
+            <span class="quiet"><small>Criado a <%= time_ago_in_words(handcraft.created_at) %> atrás por <%= handcraft.artisan.name.capitalize %></small></span>
             </p>
             <% if logged_in? && (current_artisan == handcraft.artisan || current_artisan.admin?) %>
             <div class="handcraft-actions">

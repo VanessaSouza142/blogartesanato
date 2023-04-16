@@ -45,6 +45,8 @@ $navbar-default-bg:  #009999;
 
 footer {
     margin-top: 45px;
+    margin-left: 20px;
+    margin-right: 20px;
     padding-top: 5px;
     border-top: 1px solid #eaeaea;
     color: #777;  
@@ -104,4 +106,15 @@ footer ul li {
 color: #009999;
 font-weight: bold;
 font-size: 1.35em;
+}
+
+.badge {
+    background-color: #ffffb3;
+    border: 1px solid #009999;
+    text-align: center;    
+}
+
+.input_checkbox input {
+    width: auto !important;
+    display: inline-block;
 }
