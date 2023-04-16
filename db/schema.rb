@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_16_154758) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_16_190701) do
   create_table "artisans", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -18,6 +18,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_154758) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.boolean "admin", default: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "description"
+    t.integer "artisan_id"
+    t.integer "handcraft_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "handcraft_materials", force: :cascade do |t|

@@ -6,4 +6,5 @@ class Handcraft < ApplicationRecord
     default_scope -> { order(updated_at: :desc) }
     has_many :handcraft_materials
     has_many :materials, through: :handcraft_materials
+    has_many :comments, dependent: :destroy
 end
