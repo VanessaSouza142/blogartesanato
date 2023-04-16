@@ -4,4 +4,6 @@ class Handcraft < ApplicationRecord
     belongs_to :artisan
     validates :artisan_id, presence: true
     default_scope -> { order(updated_at: :desc) }
+    has_many :handcraft_materials
+    has_many :materials, through: :handcraft_materials
 end

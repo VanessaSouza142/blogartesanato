@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_16_015758) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_16_154758) do
   create_table "artisans", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -20,12 +20,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_015758) do
     t.boolean "admin", default: false
   end
 
+  create_table "handcraft_materials", force: :cascade do |t|
+    t.integer "handcraft_id"
+    t.integer "material_id"
+  end
+
   create_table "handcrafts", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "artisan_id"
+  end
+
+  create_table "materials", force: :cascade do |t|
+    t.string "name"
   end
 
 end
