@@ -5,6 +5,7 @@ class ArtisansListingTest < ActionDispatch::IntegrationTest
         @artisan = Artisan.create!(name: "Vanessa", email: "vanessa@example.com", password: "password", password_confirmation: "password")
         # another way
         @artisan2 = Artisan.create!(name: "Ana", email: "ana@example.com", password: "password", password_confirmation: "password")
+        @admin_user = Artisan.create!(name: "Ana1", email: "ana1@example.com", password: "password", password_confirmation: "password", admin: true)
     end
 
     test "should get artisans listing" do
@@ -15,6 +16,7 @@ class ArtisansListingTest < ActionDispatch::IntegrationTest
     end
 
     test "should delete artisan" do
+        sign_in_as(@admin_user, "password")
         get artisans_path
         assert_template 'artisans/index'
         assert_difference 'Artisan.count', -1 do

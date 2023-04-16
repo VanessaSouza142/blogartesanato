@@ -1,6 +1,7 @@
 class ArtisansController < ApplicationController
     before_action :set_artisan, only: [:show, :edit, :update, :destroy]
     before_action :require_same_user, only: [:edit, :update, :destroy]
+    before_action :require_admin, only: [:destroy]
     
     def index
         @artisans = Artisan.paginate(page: params[:page], per_page: 5)
@@ -39,9 +40,11 @@ class ArtisansController < ApplicationController
     end
 
     def destroy
-        @artisan.destroy
-        flash[:danger] = "O artesão e todos os artesanatos associados a ele foram deletados!"
-        redirect_to artisans_path
+        if !@artisan.admin?
+            @artisan.destroy
+            flash[:danger] = "O artesão e todos os artesanatos associados a ele foram deletados!"
+            redirect_to artisans_path
+        end
     end
 
     private
@@ -55,9 +58,16 @@ class ArtisansController < ApplicationController
     end
 
     def require_same_user
-        if current_artisan != @artisan
-          flash[:danger] = "Você só pode editar ou deletar sua própria conta"
+        if current_artisan != @artisan and !current_artisan.admin?
+          flash[:danger] = "Você só pode editar ou deletar sua própria conta!"
           redirect_to artisans_path
         end  
+    end
+
+    def require_admin
+        if logged_in? & !current_artisan.admin?
+            flash[:danger] = "Somente o administrador pode executar essa ação!"
+        redirect_to root_path
+        end
     end
 end

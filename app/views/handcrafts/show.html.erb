@@ -20,7 +20,7 @@
         </p>
     </div>
         <div class="handcraft-actions">
-            <% if logged_in? && current_artisan == @handcraft.artisan %>
+            <% if logged_in? && (current_artisan == @handcraft.artisan || current_artisan.admin? ) %>
                 <%= link_to "Edite este artesanato", edit_handcraft_path(@handcraft), class: 'btn btn-xs btn-warning' %>
                 <%= link_to "Delete este artesanato", handcraft_path(@handcraft), method: :delete, data: { confirm: "Você tem certeza que quer deletar?" }, class: "btn btn-xs btn-danger" %>
             <% end %>

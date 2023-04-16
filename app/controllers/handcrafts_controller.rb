@@ -56,7 +56,7 @@ class HandcraftsController < ApplicationController
         end
 
         def require_same_user
-            if current_artisan != @handcraft.artisan
+            if current_artisan != @handcraft.artisan and !current_artisan.admin?
               flash[:danger] = "Você só pode editar ou deletar os artesanatos criados por você"
               redirect_to handcrafts_path
             end  
