@@ -1,16 +1,19 @@
 class ArtisansController < ApplicationController
+    before_action :set_artisan, only: [:show, :edit, :update, :destroy]
+    before_action :require_same_user, only: [:edit, :update, :destroy]
     
     def index
         @artisans = Artisan.paginate(page: params[:page], per_page: 5)
-      end
+    end
 
     def new
-      @artisan = Artisan.new
+        @artisan = Artisan.new
     end
   
     def create
         @artisan = Artisan.new(artisan_params)
         if @artisan.save
+          session[:artisan_id] = @artisan.id  
           flash[:success] = "Bem-vindo #{@artisan.name} ao seu blog de artesanato em geral"
           redirect_to artisan_path(@artisan)
         else
@@ -19,34 +22,42 @@ class ArtisansController < ApplicationController
     end
 
     def show
-        @artisan = Artisan.find(params[:id])
         @artisan_handcrafts = @artisan.handcrafts.paginate(page: params[:page], per_page: 5)
     end
 
     def edit
-        @artisan = Artisan.find(params[:id])
-      end
+
+    end
       
-      def update
-        @artisan = Artisan.find(params[:id])
+    def update
         if @artisan.update(artisan_params)
-          flash[:success] = "Sua conta foi atualizada com sucesso"
+          flash[:success] = "Sua conta foi atualizada com sucesso!"
           redirect_to @artisan
         else
           render 'edit', status: :unprocessable_entity
         end  
-      end
+    end
 
-      def destroy
-        @artisan = Artisan.find(params[:id])
+    def destroy
         @artisan.destroy
-        flash[:danger] = "O artesão e todos os artesanatos associados a ele foram deletados"
+        flash[:danger] = "O artesão e todos os artesanatos associados a ele foram deletados!"
         redirect_to artisans_path
-      end
+    end
 
     private
   
     def artisan_params
         params.require(:artisan).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def set_artisan
+        @artisan = Artisan.find(params[:id])
+    end
+
+    def require_same_user
+        if current_artisan != @artisan
+          flash[:danger] = "Você só pode editar ou deletar sua própria conta"
+          redirect_to artisans_path
+        end  
     end
 end

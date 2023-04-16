@@ -23,17 +23,19 @@ class HandcraftsTest < ActionDispatch::IntegrationTest
     end
 
     test "should get handcrafts show" do
+        sign_in_as(@artisan, "password")
         get handcraft_path(@handcraft)
         assert_template 'handcrafts/show'
         assert_match @handcraft.name, response.body
         assert_match @handcraft.description, response.body
         assert_match @artisan.name, response.body 
-        assert_select 'a[href=?]', edit_handcraft_path(@handcraft), text: "Edit this handcraft"
-        assert_select 'a[href=?]', handcraft_path(@handcraft), text: "Delete this handcraft"
-        assert_select 'a[href=?]', handcrafts_path, text: "Return to handcrafts listing"  
+        assert_select 'a[href=?]', edit_handcraft_path(@handcraft), text: "Edite este artesanato"
+        assert_select 'a[href=?]', handcraft_path(@handcraft), text: "Delete este artesanato"
+        assert_select 'a[href=?]', handcrafts_path, text: "Retorne para a listagem de artesanatos"  
     end
 
     test "create new valid handcraft" do
+        sign_in_as(@artisan, "password")
         get new_handcraft_path
         assert_template 'handcrafts/new'
         name_of_handcraft = "clay sculpture"
@@ -47,6 +49,7 @@ class HandcraftsTest < ActionDispatch::IntegrationTest
       end
       
       test "reject invalid handcraft submissions" do
+        sign_in_as(@artisan, "password")
         get new_handcraft_path
         assert_template 'handcrafts/new'
         assert_no_difference 'Handcraft.count' do

@@ -1,13 +1,13 @@
 <%= render 'shared/page_title', title: @handcraft.name %>
 
 <div class="well col-md-8 col-md-offset-2">
-    <h4 class="center description"><strong> Description: </strong></h4>
+    <h4 class="center description"><strong> Descrição: </strong></h4>
     <hr />
     <%=simple_format(@handcraft.description) %>
     <hr />
     <div class="pull-right">
         <p class="center">
-            <em>Created by:</em>
+            <em>Criado por:</em>
         </p>
         <p class="center">
             <%= link_to gravatar_for(@handcraft.artisan), handcraft_path %>
@@ -15,13 +15,15 @@
         <p class="center">
             <small> <%= @handcraft.artisan.name.capitalize %></small>
             <div class="pull-right">
-                <%= time_ago_in_words(@handcraft.created_at)%> ago
+                <%= time_ago_in_words(@handcraft.created_at)%> atrás
             </div>
         </p>
     </div>
         <div class="handcraft-actions">
-            <%= link_to "Edit this handcraft", edit_handcraft_path(@handcraft), class: 'btn btn-xs btn-warning' %>
-            <%= link_to "Delete this handcraft", handcraft_path(@handcraft), method: :delete, data: { confirm: "Are you sure you want to delete?" }, class: "btn btn-xs btn-danger" %>
-            <%= link_to "Return to handcrafts listing", handcrafts_path, class: 'btn btn-xs btn-primary' %>
+            <% if logged_in? && current_artisan == @handcraft.artisan %>
+                <%= link_to "Edite este artesanato", edit_handcraft_path(@handcraft), class: 'btn btn-xs btn-warning' %>
+                <%= link_to "Delete este artesanato", handcraft_path(@handcraft), method: :delete, data: { confirm: "Você tem certeza que quer deletar?" }, class: "btn btn-xs btn-danger" %>
+            <% end %>
+            <%= link_to "Retorne para a listagem de artesanatos", handcrafts_path, class: 'btn btn-xs btn-primary' %>
         </div>     
 </div>

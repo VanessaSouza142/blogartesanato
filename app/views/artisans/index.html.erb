@@ -1,4 +1,4 @@
-<%= render 'shared/page_title', title: "Showing all artisans" %>
+<%= render 'shared/page_title', title: "Listagem de todos os artesãos" %>
 
 <div align="center">
     <%= will_paginate %>
@@ -8,7 +8,7 @@
         <div class="well col-md-4 col-md-offset-4">
         <li><%= link_to gravatar_for(artisan), artisan_path(artisan) %></li>
         <li class="artisan-title"><%= link_to artisan.name.capitalize, artisan_path(artisan) %></li>
-            <li><small><%= pluralize(artisan.handcrafts.count, "handcraft") if artisan.handcrafts %></small></li>
+            <li><small><%= pluralize(artisan.handcrafts.count, "artesanato") if artisan.handcrafts %></small></li>
             <li><%= link_to "Delete este artesão", artisan_path(artisan), method: :delete, data: {confirm: "Você tem certeza que deseja deletar este artesão e todos os artesanatos associados a ele?"} %></li>
         </div>
     </div>

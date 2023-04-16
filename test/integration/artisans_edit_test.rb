@@ -6,6 +6,7 @@ class ArtisansEditTest < ActionDispatch::IntegrationTest
     end
 
     test "reject an invalid edit" do
+    sign_in_as(@artisan, "password")
     get edit_artisan_path(@artisan)
     assert_template 'artisans/edit'
     patch artisan_path(@artisan), params: { artisan: { name: " ", email: "joao@example.com" } }
@@ -15,6 +16,7 @@ class ArtisansEditTest < ActionDispatch::IntegrationTest
   end
   
   test "accept valid signup" do
+    sign_in_as(@artisan, "password")
     get edit_artisan_path(@artisan)
     assert_template 'artisans/edit'
     patch artisan_path(@artisan), params: { artisan: { name: "joao1", email: "joao1@example.com" } }

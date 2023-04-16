@@ -1,11 +1,11 @@
-<%= render 'shared/page_title', title: "Artisan #{@artisan.name}'s Profile" %>
+<%= render 'shared/page_title', title: "Perfil do Artesão #{@artisan.name}" %>
 <div class="row">
   <div class="col-md-4 col-md-offset-4 center">
     <%= gravatar_for @artisan, size: 150 %>
   </div>
 </div>
 
-<h4 align="center"><%= @artisan.name %>'s handcrafts </h4>
+<h4 align="center"> artesanatos de <%= @artisan.name %> </h4>
 <div align="center">
 <%= will_paginate @artisan_handcrafts %>
 </div>

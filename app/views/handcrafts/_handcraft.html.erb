@@ -9,8 +9,14 @@
             <h4> <%= link_to handcraft.name, handcraft_path(handcraft) %> </h4>
             <p> <%= truncate(handcraft.description, length: 150) %> </p>
             <p>
-            <span class="quiet"><small>Created <%= time_ago_in_words(handcraft.created_at) %> ago</small></span>
+            <span class="quiet"><small>Criado a <%= time_ago_in_words(handcraft.created_at) %> atrás </small></span>
             </p>
+            <% if logged_in? && current_artisan == handcraft.artisan %>
+            <div class="handcraft-actions">
+                <%= link_to "Edite este artesanato", edit_handcraft_path(handcraft), class: 'btn btn-xs btn-warning' %>
+                <%= link_to "Delete este artesanato", handcraft_path(handcraft), method: :delete, data: { confirm: "Você tem certeza que quer deletar?" }, class: "btn btn-xs btn-danger" %>
+            </div>
+            <% end %>
         </div>
     </div>
 <% end %>

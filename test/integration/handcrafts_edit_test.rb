@@ -8,6 +8,7 @@ class HandcraftsEditTest < ActionDispatch::IntegrationTest
       end
       
       test "reject invalid handcraft update" do
+        sign_in_as(@artisan, "password")
         get edit_handcraft_path(@handcraft)
         assert_template 'handcrafts/edit'
         patch handcraft_path(@handcraft), params: { handcraft: { name: " ", description: "some description" } } 
@@ -17,6 +18,7 @@ class HandcraftsEditTest < ActionDispatch::IntegrationTest
       end
 
       test "successfully edit a recipe" do
+        sign_in_as(@artisan, "password")
         get edit_handcraft_path(@handcraft)
         assert_template 'handcrafts/edit'
         updated_name = "updated handcraft name"
