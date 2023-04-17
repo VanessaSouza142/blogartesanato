@@ -5,7 +5,7 @@
     <%= form_for(@handcraft, :html => {class: "form-horizontal", role: "form"}) do |f| %>
       <div class="form-group">
         <div class="control-label col-md-2">
-          <%= f.label :name %>
+          <%= f.label :name, "Nome" %>
         </div>
         <div class="col-md-8">
           <%= f.text_field :name, class: "form-control", placeholder: "Nome do artesanato", autofocus: true %>
@@ -13,10 +13,10 @@
       </div>
       <div class="form-group">
         <div class="control-label col-md-2">
-          <%= f.label :description %>
+          <%= f.label :description, "Descrição" %>
         </div>
         <div class="col-md-8">
-          <%= f.text_area :description, rows: 10, class: "form-control", placeholder: "Descreva sobre o artesanato" %>
+          <%= f.text_area :description, rows: 10, class: "form-control justify-text", placeholder: "Descreva sobre o artesanato" %>
         </div>
       </div>
       <div class="form-group">
@@ -30,7 +30,7 @@
       </div>
       <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-          <%= f.submit "Criar meu artesanato", class: "btn btn-primary btn-lg btn-xlarge" %>
+          <%= f.submit(@handcraft.new_record? ? "Criar meu artesanato" : "Atualizar meu artesanato", class: "btn btn-primary btn-lg btn-xlarge") %>
         </div>
       </div>
     <% end %>

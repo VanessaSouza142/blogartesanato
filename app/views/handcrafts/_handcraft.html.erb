@@ -13,7 +13,7 @@
             <% end%>
             <p>
             <span class="quiet"><small>Criado a <%= time_ago_in_words(handcraft.created_at) %> atrás por <%= handcraft.artisan.name.capitalize %>
-                                                         | <%= pluralize(handcraft.comments.count, 'Comment') %></small></span>
+                                                         | <%= pluralize(handcraft.comments.count, 'Commentário') %></small></span>
             </p>
             <% if logged_in? && (current_artisan == handcraft.artisan || current_artisan.admin?) %>
             <div class="handcraft-actions">

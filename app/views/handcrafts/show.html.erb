@@ -3,7 +3,9 @@
 <div class="well col-md-8 col-md-offset-2">
     <h4 class="center description"><strong> Descrição: </strong></h4>
     <hr />
-    <%=simple_format(@handcraft.description) %>
+    <div class="justify-text">
+        <%= simple_format(@handcraft.description) %>
+    </div>
     <hr />
     <% if @handcraft.materials.any? %>
         <p>Materiais: <%= render @handcraft.materials %></p>
@@ -39,7 +41,7 @@
       <%= form_for([@handcraft, @comment], :html => {class: "form-horizontal", role: "form"}) do |f| %>
         <div class="form-group">
           <div class="control-label col-md-2">
-            <%= f.label :description, "Commentário" %>
+            <%= f.label :description, "Comentário" %>
           </div>
           <div class="col-md-8">
             <%= f.text_area :description, rows: 4, class: "form-control", placeholder: "Escreva o seu comentário aqui" %>

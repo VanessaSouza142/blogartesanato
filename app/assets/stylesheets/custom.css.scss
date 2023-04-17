@@ -16,7 +16,7 @@ $navbar-default-bg:  #009999;
 #logo {
     float: left;
     font-size: 1.7em;
-    color: #fff;
+    color: #ffffb3;
     text-transform: uppercase;
     font-weight: bold;
 }
@@ -26,8 +26,14 @@ $navbar-default-bg:  #009999;
     text-decoration: none;
 }
 
-.jumbotron h1 {
-    color: rgba(0, 0, 0, 0.788);
+.links a, .links {
+    font-size: 1.1em !important;
+    color: #ffffb3 !important;
+    text-shadow: 4px 3px 4px #5C2819;
+}
+
+.jumbotron h1, .jumbotron h2 {
+    color: black;
     text-align: center;
     margin-bottom: 30px;
     letter-spacing: -1px;
@@ -36,11 +42,16 @@ $navbar-default-bg:  #009999;
 
 .btn-xlarge {
     background-color: #009999;
+    color: #ffffb3;
 }
 
-.btn x-large:hover {
+.btn-xlarge:hover {
     color: #fff;
     text-decoration: none;
+}
+
+.justify-text {
+    text-align: justify;
 }
 
 footer {
@@ -111,7 +122,7 @@ font-size: 1.35em;
 .badge {
     background-color: #ffffb3;
     border: 1px solid #009999;
-    text-align: center;    
+    text-align: center;
 }
 
 .input_checkbox input {
